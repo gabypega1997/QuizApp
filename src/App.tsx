@@ -7,7 +7,11 @@ import QuestionCard from './components/QuestionCard';
 //Types
 import { Difficulty, QuestionState } from './API';
 
-type AnswerObject = {
+//Styles
+import { GlobalStyle, Wrapper } from './App.styles';
+
+
+export type AnswerObject = {
   question:string;
   answer:string;
   correct:boolean;
@@ -63,12 +67,21 @@ const App = () => {
   }
 
   const nextQuestion = () => {
-    //move on to the next question
+    //Move on to the next question if not the last question
+    const nextQuestion = number + 1;
+
+    if(nextQuestion === TOTAL_QUESTIONS){
+      setGameOver(true);
+    }else{
+      setNumber(nextQuestion);
+    }
 
   }
 
   return (
-    <div className="App">
+    <>
+    <GlobalStyle/>
+    <Wrapper>
       <h1>Trivia Quiz</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
         <button className='start' onClick={startTrivia}>
@@ -76,7 +89,7 @@ const App = () => {
         </button>
       ):null}
 
-      {!gameOver ? <p className='score'>Score:</p> : null}
+      {!gameOver ? <p className='score'>Score: {score}</p> : null}
 
       { loading && <p className='loading'>Loading Questions....</p>}
       {!loading && !gameOver &&(
@@ -97,7 +110,8 @@ const App = () => {
           </button>
       ) : null}
       
-    </div>
+    </Wrapper>
+    </>
   );
 }
 

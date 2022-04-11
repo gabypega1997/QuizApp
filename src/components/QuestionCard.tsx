@@ -1,11 +1,12 @@
-import { AnyMxRecord } from "dns";
 import React from "react";
+import {AnswerObject} from "../App"
+import {Wrapper, ButtonWrapper} from "./QuestionCard.style"
 
 type Props = {
     question: string,
     answers: string[],
-    callback: any,
-    userAnswer: any,
+    callback: (event: React.MouseEvent<HTMLButtonElement>) => void ,
+    userAnswer: AnswerObject | undefined,
     questionNr : number,
     totalQuestions: number
 
@@ -19,21 +20,25 @@ const QuestionCard: React.FC<Props> = ({
     totalQuestions,
     userAnswer
 }) => (
-<div>
+<Wrapper>
     <p className="number">
         Question: {questionNr}/{totalQuestions}
     </p>
     <p dangerouslySetInnerHTML={{__html: question}}/>
     <div>
         {answers.map(answer => (
-            <div key={answer}>
-                <button disabled={userAnswer} value={answer} onClick={callback}>
+            <ButtonWrapper
+                key={answer}
+                correct={userAnswer?.correctAnswer === answer}
+                userClicked = {userAnswer?.answer === answer}
+                >
+                <button disabled={!!userAnswer} value={answer} onClick={callback}>
                     <span dangerouslySetInnerHTML={{__html:answer}}/>
                 </button>
-            </div>
+            </ButtonWrapper>
         ))}
     </div>
-</div>
+</Wrapper>
 );
 
 export default QuestionCard;
