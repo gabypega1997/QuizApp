@@ -27,6 +27,13 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
 
+    .container-start{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    
+    }
+
     >p{
         color: #fff;
     }
@@ -51,7 +58,7 @@ export const Wrapper = styled.div`
         margin:20px;
     }
 
-    .start, .next{
+    .start, .next, .restart{
         cursor:pointer;
         background:linear-gradient(180deg, #fff, #ffcc91);
         border: 2px solid #d38558;
@@ -61,7 +68,27 @@ export const Wrapper = styled.div`
         margin: 20px 0;
         padding: 0 40px;
     }
+    .restart{
+        height:30px;
+        padding: 0 25px;
+        background:linear-gradient(90deg, #ff5656, #c16868);
+        border:none;
+    }
     .start{
         max-width: 200px;
+        
     }
+    .difficulty-buttons > button{
+        background:linear-gradient(90deg, #ff5656, #c16868);
+        padding:5px 10px;
+        margin:5px;
+        border-radius:10px;
+        box-shadow: 0px 5px 10px rgba(0,0,0,0.25);
+        border:none;      
+    }
+    .difficulty-buttons > button:hover, .restart:hover{
+        cursor:pointer;
+        opacity:0.8;
+    }
+
 `

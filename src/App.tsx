@@ -8,7 +8,7 @@ import QuestionCard from './components/QuestionCard';
 import { Difficulty, QuestionState } from './API';
 
 //Styles
-import { GlobalStyle, Wrapper } from './App.styles';
+import { GlobalStyle, Wrapper} from './App.styles';
 
 
 export type AnswerObject = {
@@ -19,6 +19,7 @@ export type AnswerObject = {
 }
 
 const TOTAL_QUESTIONS = 10;
+let DIFFICULTY_GAME = Difficulty.EASY;
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -28,15 +29,14 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
 
-  console.log(questions)
 
-  const startTrivia =async () => {
+  const startTrivia = async () => {
     setLoading(true);
     setGameOver(false);
 
     const newQuestions = await fetchQuizQuestions(
       TOTAL_QUESTIONS,
-      Difficulty.EASY
+      DIFFICULTY_GAME
     );
 
     setQuestions(newQuestions);
@@ -44,7 +44,36 @@ const App = () => {
     setUserAnswers([]);
     setNumber(0);
     setLoading(false);
+  };
+
+  const restart = () => {
+    setGameOver(true);
   }
+
+  //Chose a Difficulty
+  const choseDifficulty  = (event: any) => {
+    const difficultyType = event.target.innerHTML.toLowerCase();
+    const childrenArray  = event.target.parentElement.children;
+        for(let child of childrenArray){
+      child.style.background = "linear-gradient(90deg, #ff5656, #c16868)"
+    }
+
+    switch(difficultyType){
+      case "easy": 
+        DIFFICULTY_GAME = Difficulty.EASY;
+        event.target.style.background = "linear-gradient(90deg, #56ffa4, #59bc86)";
+        break;
+      case "medium": 
+        DIFFICULTY_GAME = Difficulty.MEDIUM;
+        event.target.style.background = "linear-gradient(90deg, #56ffa4, #59bc86)";
+        break;
+      case "hard": 
+        DIFFICULTY_GAME = Difficulty.HARD;
+        event.target.style.background = "linear-gradient(90deg, #56ffa4, #59bc86)";
+        break;
+      
+    }
+  };
   const checkAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
       if(!gameOver){
         //users answer
@@ -82,12 +111,20 @@ const App = () => {
     <>
     <GlobalStyle/>
     <Wrapper>
-      <h1>Trivia Quiz</h1>
+      <h1>Trivia Quiz</h1>   
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <button className='start' onClick={startTrivia}>
-        Start Quiz
-        </button>
-      ):null}
+        <div className='container-start'>
+            <div className='difficulty-buttons'>
+              <button onClick={choseDifficulty} style={{'background': "linear-gradient(90deg, #56ffa4, #59bc86)"}}>Easy</button>
+              <button onClick={choseDifficulty}>Medium</button>
+              <button onClick={choseDifficulty}>Hard</button>
+            </div> 
+
+          <button className='start' onClick={startTrivia}>
+          Start Quiz
+          </button>
+        </div> 
+      ):<button className='restart' onClick={restart}>Restart</button>}
 
       {!gameOver ? <p className='score'>Score: {score}</p> : null}
 
