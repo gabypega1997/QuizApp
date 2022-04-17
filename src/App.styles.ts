@@ -27,6 +27,13 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
 
+    .container-start{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    
+    }
+
     >p{
         color: #fff;
     }
@@ -63,5 +70,16 @@ export const Wrapper = styled.div`
     }
     .start{
         max-width: 200px;
+        
+    }
+    .difficulty-buttons > button{
+        background:linear-gradient(90deg, #ff5656, #c16868);
+        padding:5px 10px;
+        margin:5px;
+        border-radius:10px;
+        box-shadow: 0px 5px 10px rgba(0,0,0,0.25);
+
+
+        
     }
 `

@@ -8,7 +8,7 @@ import QuestionCard from './components/QuestionCard';
 import { Difficulty, QuestionState } from './API';
 
 //Styles
-import { GlobalStyle, Wrapper } from './App.styles';
+import { GlobalStyle, Wrapper} from './App.styles';
 
 
 export type AnswerObject = {
@@ -51,21 +51,21 @@ const App = () => {
     const difficultyType = event.target.innerHTML.toLowerCase();
     const childrenArray  = event.target.parentElement.children;
         for(let child of childrenArray){
-      child.style.background = "#fff"
+      child.style.background = "linear-gradient(90deg, #ff5656, #c16868)"
     }
 
     switch(difficultyType){
       case "easy": 
         DIFFICULTY_GAME = Difficulty.EASY;
-        event.target.style.background = "#8c8281";
+        event.target.style.background = "linear-gradient(90deg, #56ffa4, #59bc86)";
         break;
       case "medium": 
         DIFFICULTY_GAME = Difficulty.MEDIUM;
-        event.target.style.background = "#8c8281";
+        event.target.style.background = "linear-gradient(90deg, #56ffa4, #59bc86)";
         break;
       case "hard": 
         DIFFICULTY_GAME = Difficulty.HARD;
-        event.target.style.background = "#8c8281";
+        event.target.style.background = "linear-gradient(90deg, #56ffa4, #59bc86)";
         break;
       
     }
@@ -109,9 +109,9 @@ const App = () => {
     <Wrapper>
       <h1>Trivia Quiz</h1>   
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <div>
-            <div>
-              <button onClick={choseDifficulty}>Easy</button>
+        <div className='container-start'>
+            <div className='difficulty-buttons'>
+              <button onClick={choseDifficulty} style={{'background': "linear-gradient(90deg, #56ffa4, #59bc86)"}}>Easy</button>
               <button onClick={choseDifficulty}>Medium</button>
               <button onClick={choseDifficulty}>Hard</button>
             </div> 
