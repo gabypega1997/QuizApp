@@ -46,6 +46,10 @@ const App = () => {
     setLoading(false);
   };
 
+  const restart = () => {
+    setGameOver(true);
+  }
+
   //Chose a Difficulty
   const choseDifficulty  = (event: any) => {
     const difficultyType = event.target.innerHTML.toLowerCase();
@@ -120,7 +124,7 @@ const App = () => {
           Start Quiz
           </button>
         </div> 
-      ):null}
+      ):<button className='restart' onClick={restart}>Restart</button>}
 
       {!gameOver ? <p className='score'>Score: {score}</p> : null}
 
