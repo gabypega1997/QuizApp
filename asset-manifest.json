@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/https/gabypega1997.github.io/QuizApp/static/js/main.f1e42ee9.js",
-    "static/media/background.jpg": "/https/gabypega1997.github.io/QuizApp/static/media/background.cbfcd6a11e770cf1a09c.jpg",
-    "index.html": "/https/gabypega1997.github.io/QuizApp/index.html",
-    "main.f1e42ee9.js.map": "/https/gabypega1997.github.io/QuizApp/static/js/main.f1e42ee9.js.map"
+    "main.js": "/QuizApp/static/js/main.2bbb92d6.js",
+    "static/media/background.jpg": "/QuizApp/static/media/background.cbfcd6a11e770cf1a09c.jpg",
+    "index.html": "/QuizApp/index.html",
+    "main.2bbb92d6.js.map": "/QuizApp/static/js/main.2bbb92d6.js.map"
   },
   "entrypoints": [
-    "static/js/main.f1e42ee9.js"
+    "static/js/main.2bbb92d6.js"
   ]
 }
